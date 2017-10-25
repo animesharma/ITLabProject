@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Initial.master.cs" Inherits="Initial" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:label id = "l1" runat ="server">Welcome To FlopKart Groceries!</asp:label>
+        <br />
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+   
+        <br />
+        <asp:label runat="server" id="l2">Contact Us: info@flopkart.com</asp:label>
+    </div>
+    </form>
+</body>
+</html>
