@@ -5,9 +5,18 @@ using System.Security.Cryptography;
 
 public partial class Register : System.Web.UI.Page
 {
+
+
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        if (Session["Theme"] != null)
+        {
+            Page.Theme = Session["Theme"].ToString();
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
 
     protected void Register_Click(object sender, EventArgs e)
@@ -33,7 +42,7 @@ public partial class Register : System.Web.UI.Page
             else
             {
                 // does not exists, so, persist the user
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO USERS values (@Email, @Password, @Name, @Address, @Contact)", con))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO USERS(Email, Password, Name, Address, Phone) values (@Email, @Password, @Name, @Address, @Contact)", con))
                 {
                     cmd.Parameters.AddWithValue("Email", emailtb.Text);
                     cmd.Parameters.AddWithValue("Password", getHashSha256(passtb.Text));

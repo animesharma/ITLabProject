@@ -11,7 +11,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:label id = "l1" runat ="server">Welcome To FlopKart Groceries!</asp:label>
+        <asp:Label ID="l0" runat="server"></asp:Label>
+        <asp:Button ID ="logout" runat="server" Text="Logout!" OnClick="logout_Click" Visible="false"/>
+        <asp:Button ID ="mmode" runat="server" Text="Manager Mode!" OnClick="mm_Click" Visible="false"/>
+        <br />
+        <asp:label id = "l1" runat ="server">FlopKart Groceries!</asp:label>
         <br />
 
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
@@ -20,6 +24,10 @@
    
         <br />
         <asp:label runat="server" id="l2">Contact Us: info@flopkart.com</asp:label>
+        <asp:DropDownList runat="server" ID="theme_ddl" AutoPostBack="true" OnSelectedIndexChanged="theme_ddl_SelectedIndexChanged">
+            <asp:ListItem Text="DarkGrey" Value="DarkGrey"/>
+            <asp:ListItem Text="Monochrome" Value="Monochrome"/>
+        </asp:DropDownList>
     </div>
     </form>
 </body>

@@ -12,6 +12,16 @@ public partial class MainPage : System.Web.UI.Page
     Dictionary<String, int> cart = new Dictionary<string, int>();
     decimal tot_price = 0;
 
+
+
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        if (Session["Theme"] != null)
+        {
+            Page.Theme = Session["Theme"].ToString();
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -55,6 +65,17 @@ public partial class MainPage : System.Web.UI.Page
             }
             return;
         }
+        if (!hasEnoughItems(id.Text, quan.Text))
+        {
+            if (cart.ContainsKey(id.Text))
+            {
+                tot_price -= decimal.Parse(price.Text) * cart[id.Text];
+                subTotal.Text = "";
+                cart.Remove(id.Text);
+            }
+            quan.Text = "";
+            return;
+        }
         decimal st = decimal.Parse(price.Text) * int.Parse(quan.Text);
         subTotal.Text = "Rs. " + st;
         if (cart.ContainsKey(id.Text))
@@ -71,6 +92,25 @@ public partial class MainPage : System.Web.UI.Page
         updateTotalField();
     }
 
+    private bool hasEnoughItems(string id, string given)
+    {
+        SqlConnection con = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = GroceryDB; Integrated Security = True");
+        Boolean exists = false;
+        try
+        {
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand("select quantity from Items where id = @id ", con))
+            {
+                cmd.Parameters.AddWithValue("id", id);
+                exists = (int)cmd.ExecuteScalar() >= int.Parse(given);
+            }
+        } catch (Exception e)
+        {
+
+        }
+        return exists;
+    }
+
     private void updateTotalField()
     {
         total.Text = "TOTAL : Rs. " + tot_price;
@@ -78,8 +118,30 @@ public partial class MainPage : System.Web.UI.Page
         Session["tot_price"] = tot_price;
     }
 
-    protected void searchbtn_Click(object sender, EventArgs e)
+    protected void proceed_Click(object sender, EventArgs e)
     {
+        String randCoo = randString();
+        HttpCookie cookie = new HttpCookie(randCoo);
+        cookie.Expires = DateTime.Now.AddMinutes(20);
+        foreach (KeyValuePair<string, int> kvp in cart)
+        {
+            cookie[kvp.Key] = kvp.Value + "";
+        }
+        Response.SetCookie(cookie);
+        Response.Redirect("OrderConfirm.aspx?cook="+randCoo);
+    }
 
+    private String randString()
+    {
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var stringChars = new char[8];
+        var random = new Random();
+
+        for (int i = 0; i < stringChars.Length; i++)
+        {
+            stringChars[i] = chars[random.Next(chars.Length)];
+        }
+
+        return new String(stringChars);
     }
 }

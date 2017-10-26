@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Initial.master" AutoEventWireup="true" CodeFile="MainPage.aspx.cs" Inherits="MainPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    
-    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false" AllowPaging="true" PageSize ="30">
+    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false">
         <Columns>
             <asp:TemplateField HeaderText="ID">
                 <ItemTemplate>
@@ -35,5 +36,7 @@
         </Columns>
     </asp:GridView>
     <asp:Label runat="server" ID="total"></asp:Label>
+    <br />
+    <asp:Button runat="server" ID="proceed" Text="Add To Cart" OnClick="proceed_Click" />
 </asp:Content>
 

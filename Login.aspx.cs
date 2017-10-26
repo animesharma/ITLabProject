@@ -5,6 +5,17 @@ using System.Security.Cryptography;
 
 public partial class Login : System.Web.UI.Page
 {
+
+
+
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        if (Session["Theme"] != null)
+        {
+            Page.Theme = Session["Theme"].ToString();
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string user = Request.QueryString["user"];
@@ -33,7 +44,22 @@ public partial class Login : System.Web.UI.Page
             }
 
             if (exists)
+            {
                 successlb.Text = "Authentication Successful!";
+            using( SqlCommand cmd = new SqlCommand("select Name, IsManager from USERS where Email = @Email", con))
+                {
+                    cmd.Parameters.AddWithValue("Email", emailtb.Text);
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        Session["login"] = dataReader.GetValue(0);
+                        Session["manager"] = dataReader.GetValue(1);
+                    }
+                }
+                Response.Redirect("MainPage.aspx");
+                     
+            }
+                
             else successlb.Text = "Authentication Unsuccessful! Please try again!";
         } catch (Exception x)
         {
