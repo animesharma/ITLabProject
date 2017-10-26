@@ -45,7 +45,8 @@ public partial class Register : System.Web.UI.Page
                 }
 
                 successlb.Text = "User Successfully Registered.";
-                Response.Redirect("Login.aspx");
+                String urlRed = "Login.aspx?user=" + Server.UrlEncode(emailtb.Text);
+                Response.Redirect(urlRed);
             }
             
         }

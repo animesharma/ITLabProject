@@ -7,11 +7,16 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string user = Request.QueryString["user"];
+        if (user != null)
+        {
+            emailtb.Text = user;
+        }
     }
 
     protected void Login_Click(object sender, EventArgs e)
     {
+
         SqlConnection con = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = GroceryDB; Integrated Security = True");
         try
         {
