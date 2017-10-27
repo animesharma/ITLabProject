@@ -46,14 +46,4 @@ public partial class Manager : System.Web.UI.Page
         }
 
     }
-
-    protected void addmgr_Click(object sender, EventArgs e)
-    {
-        addmgrp.Visible = true;
-    }
-
-    protected void addm_Click(object sender, EventArgs e)
-    {
-
-    }
 }

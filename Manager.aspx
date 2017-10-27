@@ -11,13 +11,6 @@
         <asp:Label ID="quelb" runat="server"></asp:Label>
     </asp:Panel>
     
-    <asp:Button ID="addmgr" Text="Add Manager!" runat="server" OnClick="addmgr_Click" />
-    <asp:Panel ID="addmgrp" runat="server" Visible="false">
-        <asp:RadioButtonList runat="server" ID="addmgrrbl">
-
-        </asp:RadioButtonList>
-        <asp:Button ID="addm" runat="server" OnClick="addm_Click" Text="Add Manager!" />
-    </asp:Panel>
 
 </asp:Content>
 
