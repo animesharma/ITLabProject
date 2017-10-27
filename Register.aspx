@@ -26,6 +26,7 @@
         ErrorMessage="Password is a required field."
         ForeColor="Red">
     </asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "passtb" ID="rev1" ValidationExpression = "^[\s\S]{6,}$" runat="server" ErrorMessage="Minimum 6 characters required." ForeColor="DarkRed"></asp:RegularExpressionValidator>
     <br />
     <asp:Label runat="server" ID="contlb">Contact Number : </asp:Label>
     <asp:TextBox runat="server" ID="conttb" TextMode="Phone"></asp:TextBox>
@@ -34,6 +35,8 @@
         ErrorMessage="Contact is a required field."
         ForeColor="Red">
     </asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "conttb" ID="rev2" ValidationExpression = "^[\s\S]{10,10}$" runat="server" ErrorMessage="10 digits required." ForeColor="DarkRed"></asp:RegularExpressionValidator>
+
     <br />
     <asp:Label runat="server" ID="addlb">Address : </asp:Label>
     <asp:TextBox runat="server" ID="addtb"></asp:TextBox>

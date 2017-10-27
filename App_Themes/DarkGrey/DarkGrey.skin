@@ -1,4 +1,4 @@
-﻿<asp:Label runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="DarkGray" Font-Size="Small" />
-<asp:TextBox runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="DarkGray" Font-Size="Small" />
-<asp:GridView runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="DarkGray" Font-Size="Small" />
-<asp:Button runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="DarkGray" Font-Size="Small" />
+﻿<asp:Label runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="Black" Font-Size="Large" />
+<asp:TextBox runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="Black" Font-Size="Large" />
+<asp:GridView runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="Black" Font-Size="Large" />
+<asp:Button runat="server" Font-Bold="true" Font-Names="Times New Roman" ForeColor="Black" Font-Size="Large" />

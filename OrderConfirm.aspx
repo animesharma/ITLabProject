@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:Label runat="server">Your Order Details : </asp:Label>
     <br />
-    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false" AllowPaging="true" PageSize ="30">
+    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="ID">
                 <ItemTemplate>
@@ -29,6 +29,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView> 
+    <br />
     <asp:Label ID="totlb" runat="server"></asp:Label>
     <br />
     <asp:Label ID="moplb" runat="server" Text="Mode of Payment : "></asp:Label>
@@ -38,7 +39,7 @@
     </asp:DropDownList>
     <br />
     <asp:Label ID="dtlb" runat="server" Text="Delivery Time Slot : "></asp:Label>
-    <asp:RadioButtonList ID="dtrbl" runat="server">
+    <asp:RadioButtonList ID="dtrbl" runat="server" align="center">
         <asp:ListItem Text="09:00 am" Value="0"></asp:ListItem>
         <asp:ListItem Text="12:00 noon" Value="1"></asp:ListItem>
         <asp:ListItem Text="03:00 pm" Value="2"></asp:ListItem>

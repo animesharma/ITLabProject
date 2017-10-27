@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    
-    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="Items" AutoGenerateColumns="false" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="ID">
                 <ItemTemplate>

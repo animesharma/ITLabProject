@@ -27,7 +27,7 @@ public partial class OrderConfirm : System.Web.UI.Page
         {
             ConnectGrid();
             if (Session["tot_price"] != null)
-                totlb.Text = "Amount to be paid: " + (decimal)Session["tot_price"];
+                totlb.Text = "Amount to be paid: Rs. " + (decimal)Session["tot_price"];
         }
     }
 
@@ -91,7 +91,35 @@ public partial class OrderConfirm : System.Web.UI.Page
 
     protected void chkbtn_Click(object sender, EventArgs e)
     {
-        successlb.Text = "Order Confirmed! " + "Mode of Payment is " + mopddl.SelectedItem.Text + " and Delivery Time is : " + dtrbl.SelectedItem.Text; 
+        HttpCookie cok = Request.Cookies[Request.QueryString["cook"]];
+        if (cok != null)
+        {
+            //Getting multiple values from single cookie.
+            SqlConnection con = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = GroceryDB; Integrated Security = True");
+            try
+            {
+                con.Open();
+                NameValueCollection nameValueCollection = cok.Values;
+                //Iterate the unique keys.
+                using (SqlCommand cmd = new SqlCommand("Update ITEMS set Quantity = Quantity - @qty where Id = @id", con))
+                {
+                    foreach (string key in nameValueCollection.AllKeys)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("Id", key);
+                        cmd.Parameters.AddWithValue("Qty", cok[key]);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                }
+                successlb.Text = "Order Confirmed! " + "Mode of Payment is " + mopddl.SelectedItem.Text + " and Delivery Time is : " + dtrbl.SelectedItem.Text;
+            }
+            catch (Exception x)
+            {
+                successlb.Text = x.Message.ToString();
+            }
+
+        }   
         //System.Threading.Thread.Sleep(1000);
         Session.Clear();
         //Response.Redirect("Login.aspx");
